@@ -1,0 +1,17 @@
+/backend-admin/.dbdata
+/backend-admin/node_modules
+/backend-admin/public
+/backend-admin/storage
+/backend-admin/vendor
+/backend-admin/tests
+/backend-admin/.env
+/backend-admin/.env.backup
+/backend-admin/.phpunit.result.cache
+/backend-admin/docker-compose.override.yml
+/backend-admin/docker-compose.yml
+/backend-admin/Homestead.json
+/backend-admin/Homestead.yaml
+/backend-admin/npm-debug.log
+/backend-admin/yarn-error.log
+/backend-admin/pass.txt
+/backend-admin/.gitignore.bak
