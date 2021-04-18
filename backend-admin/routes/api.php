@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
+use Doctrine\DBAL\Driver\Middleware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -15,7 +17,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::apiResource('users', 'App\Http\Controllers\UserController');
+Route::post('login', [AuthController::class, 'login']);
+Route::group(['middleware' => 'auth:api'], function() {
+  Route::apiResource('users', 'App\Http\Controllers\UserController');
+});
+
 // Route::get('users', [UserController::class, 'index']);
 // Route::get('users/{id}', [UserController::class, 'show']);
 // Route::post('users', [UserController::class, 'store']);
