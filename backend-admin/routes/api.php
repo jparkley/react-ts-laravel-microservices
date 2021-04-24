@@ -18,8 +18,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post('login', [AuthController::class, 'login']);
+Route::post('register', [AuthController::class, 'register']);
+
 Route::group(['middleware' => 'auth:api'], function() {
+  // User control by Admin
   Route::apiResource('users', 'App\Http\Controllers\UserController');
+  Route::apiResource('roles', 'App\Http\Controllers\RoleController');
+
+  // Get & Update by a User
+  Route::get('user', [UserController::class, 'user']);
+  Route::put('users/info', [UserController::class, 'updateInfo']);
+  Route::put('users/password', [UserController::class, 'updatePassword']);
 });
 
 // Route::get('users', [UserController::class, 'index']);
