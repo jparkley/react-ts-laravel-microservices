@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\UserController;
 use Doctrine\DBAL\Driver\Middleware;
 use Illuminate\Http\Request;
@@ -24,11 +25,13 @@ Route::group(['middleware' => 'auth:api'], function() {
   // User control by Admin
   Route::apiResource('users', 'App\Http\Controllers\UserController');
   Route::apiResource('roles', 'App\Http\Controllers\RoleController');
+  Route::apiResource('products', 'App\Http\Controllers\ProductController');
 
   // Get & Update by a User
   Route::get('user', [UserController::class, 'user']);
   Route::put('users/info', [UserController::class, 'updateInfo']);
   Route::put('users/password', [UserController::class, 'updatePassword']);
+  Route::post('upload', [ImageController::class, 'upload']);
 });
 
 // Route::get('users', [UserController::class, 'index']);
