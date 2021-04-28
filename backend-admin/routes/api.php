@@ -26,6 +26,7 @@ Route::group(['middleware' => 'auth:api'], function() {
   Route::apiResource('users', 'App\Http\Controllers\UserController');
   Route::apiResource('roles', 'App\Http\Controllers\RoleController');
   Route::apiResource('products', 'App\Http\Controllers\ProductController');
+  Route::apiResource('orders', 'App\Http\Controllers\OrderController')->only('index', 'show');
 
   // Get & Update by a User
   Route::get('user', [UserController::class, 'user']);
