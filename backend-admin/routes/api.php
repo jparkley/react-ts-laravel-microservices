@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\UserController;
 use Doctrine\DBAL\Driver\Middleware;
 use Illuminate\Http\Request;
@@ -33,6 +34,7 @@ Route::group(['middleware' => 'auth:api'], function() {
   Route::put('users/info', [UserController::class, 'updateInfo']);
   Route::put('users/password', [UserController::class, 'updatePassword']);
   Route::post('upload', [ImageController::class, 'upload']);
+  Route::get('export', [OrderController::class, 'export']);
 });
 
 // Route::get('users', [UserController::class, 'index']);
