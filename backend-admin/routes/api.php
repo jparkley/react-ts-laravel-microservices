@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\UserController;
@@ -30,13 +31,14 @@ Route::group(['middleware' => 'auth:api'], function() {
   Route::apiResource('orders', 'App\Http\Controllers\OrderController')->only('index', 'show');
   Route::apiResource('permissions', 'App\Http\Controllers\PermissionController')->only('index');
 
+  Route::post('upload', [ImageController::class, 'upload']);
+  Route::get('export', [OrderController::class, 'export']);
+  Route::get('chart', [DashboardController::class, 'chart']);
+
   // Get & Update by a User
   Route::get('user', [UserController::class, 'user']);
   Route::put('users/info', [UserController::class, 'updateInfo']);
-  Route::put('users/password', [UserController::class, 'updatePassword']);
-  Route::post('upload', [ImageController::class, 'upload']);
-  Route::get('export', [OrderController::class, 'export']);
-  
+  Route::put('users/password', [UserController::class, 'updatePassword']); 
 });
 
 // Route::get('users', [UserController::class, 'index']);
