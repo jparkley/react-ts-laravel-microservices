@@ -15,14 +15,22 @@ class AuthController extends Controller
         if( Auth::attempt($request->only('email', 'password'))) {
             $user = Auth::user();
             $token = $user->createToken('admin')->accessToken;
-            return ([
+            $cookie = \Cookie('jwt', $token, 7200);
+            return response([
                 'token' => $token,
-            ]);
+            ])->withCookie($cookie);
         }
 
         return response([
             'error' => 'Invalid login',             
         ], Response::HTTP_UNAUTHORIZED);
+    }
+
+    public function logout() {
+        $cookie = \Cookie::forget('jwt');
+        return response([
+            'message' => 'success'
+        ])->withCookie($cookie);
     }
 
     public function register(RegisterRequest $request) {
