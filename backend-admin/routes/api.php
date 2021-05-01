@@ -28,6 +28,7 @@ Route::group(['middleware' => 'auth:api'], function() {
   Route::apiResource('roles', 'App\Http\Controllers\RoleController');
   Route::apiResource('products', 'App\Http\Controllers\ProductController');
   Route::apiResource('orders', 'App\Http\Controllers\OrderController')->only('index', 'show');
+  Route::apiResource('permissions', 'App\Http\Controllers\PermissionController')->only('index');
 
   // Get & Update by a User
   Route::get('user', [UserController::class, 'user']);
@@ -35,6 +36,7 @@ Route::group(['middleware' => 'auth:api'], function() {
   Route::put('users/password', [UserController::class, 'updatePassword']);
   Route::post('upload', [ImageController::class, 'upload']);
   Route::get('export', [OrderController::class, 'export']);
+  
 });
 
 // Route::get('users', [UserController::class, 'index']);
