@@ -2,24 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use Response;
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use App\Http\Resources\OrderResource;
-use Response;
 
 class OrderController extends Controller
 {
     public function index() {
+        Gate::authorize('view', 'orders');
         $orders = Order::paginate();
         return OrderResource::collection($orders);
     }
 
     public function show($id) {
+        Gate::authorize('view', 'orders');
         $order = Order::find($id);
         return new OrderResource($order);
     }
 
     public function export() {
+        Gate::authorize('view', 'orders');
         $headers = [
             "Content-type" => "text/csv",
             "Content-Disposition" => "attachment; filename=orders.csv",
