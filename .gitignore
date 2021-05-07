@@ -17,13 +17,15 @@
 /backend-admin/.gitignore.bak
 /backend-admin/docker-compose.newtry.yml
 
+/node_modules
+
 /frontend-admin/node_modules
 /frontend-admin/.pnp
 /frontend-admin/.pnp.js
 
-/frontend-admin//coverage
+/frontend-admin/coverage
 
-/frontend-admin//build
+/frontend-admin/build
 
 /frontend-admin/.DS_Store
 /frontend-admin/.env.local
