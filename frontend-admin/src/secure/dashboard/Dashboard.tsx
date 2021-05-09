@@ -1,5 +1,5 @@
 import React from "react"
-import Wrapper from "./Wrapper"
+import Wrapper from "../Wrapper"
 
 const Dashboard = () => (
   <Wrapper>
@@ -18,30 +18,6 @@ const Dashboard = () => (
     </div>
 
     <canvas className="my-4" id="myChart" width="900" height="380"></canvas>
-
-    <h2>Section title</h2>
-    <div className="table-responsive">
-      <table className="table table-striped table-sm">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Header</th>
-            <th>Header</th>
-            <th>Header</th>
-            <th>Header</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1,003</td>
-            <td>libero</td>
-            <td>Sed</td>
-            <td>cursus</td>
-            <td>ante</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
   </Wrapper>
 )
 export default Dashboard
