@@ -1,7 +1,6 @@
 <?php
-use Closure;
 namespace App\Http\Middleware;
-
+use Closure;
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
 
 class Authenticate extends Middleware
@@ -38,5 +37,5 @@ class Authenticate extends Middleware
         $this->authenticate($request, $guards);
 
         return $next($request);
-    }   
+    }
 }
