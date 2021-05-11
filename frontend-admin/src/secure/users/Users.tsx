@@ -2,18 +2,35 @@ import React, { Component } from "react"
 import axios from "axios"
 import Wrapper from "../Wrapper"
 import { User } from "../../classes/user"
+import { Link } from "react-router-dom"
 
 class Users extends Component {
   state = {
     users: []
   }
+  page = 1
+  last_page = 0
+
   componentDidMount = async () => {
-    const response = await axios.get("users")
+    const response = await axios.get(`users?page=${this.page}`)
     console.log(response)
 
     this.setState({
       users: response.data.data
     })
+    this.last_page = response.data.meta.last_page
+  }
+
+  next = async () => {
+    if (this.page === this.last_page) return
+    this.page++
+    await this.componentDidMount()
+  }
+
+  previous = async () => {
+    if (this.page === 1) return
+    this.page--
+    await this.componentDidMount()
   }
 
   render() {
@@ -23,9 +40,9 @@ class Users extends Component {
 
         <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
           <div className="btn-toolbar mb-2">
-            <a href="#" className="btn btn-md btn-outline-secondary">
+            <Link to={"/users/create"} className="btn btn-md btn-outline-secondary">
               Add User
-            </a>
+            </Link>
           </div>
         </div>
         <div className="table-responsive">
@@ -65,6 +82,21 @@ class Users extends Component {
             </tbody>
           </table>
         </div>
+
+        <nav>
+          <ul className="pagination">
+            <li className="page-item">
+              <a href="#" className="page-link" onClick={this.previous}>
+                Previous
+              </a>
+            </li>
+            <li className="page-item">
+              <a href="#" className="page-link" onClick={this.next}>
+                Next
+              </a>
+            </li>
+          </ul>
+        </nav>
       </Wrapper>
     )
   }

@@ -20,7 +20,7 @@ class UserController extends Controller
         Gate::authorize('view', 'users');
         //return User::with('role')->paginate(5);
         // Use UserResource instead of 'with'        
-        $users = User::paginate(5);
+        $users = User::paginate(2);
         return UserResource::collection($users);
     }
 
