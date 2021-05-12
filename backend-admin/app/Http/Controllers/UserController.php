@@ -20,7 +20,7 @@ class UserController extends Controller
         Gate::authorize('view', 'users');
         //return User::with('role')->paginate(5);
         // Use UserResource instead of 'with'        
-        $users = User::paginate(2);
+        $users = User::paginate(5);
         return UserResource::collection($users);
     }
 
@@ -49,7 +49,7 @@ class UserController extends Controller
         return response(new UserResource($user), Response::HTTP_ACCEPTED); // 202
     }
 
-    public function delete($id) {
+    public function destroy($id) {
         Gate::authorize('edit', 'users');
         User::destroy($id);
         return response(null, Response::HTTP_NO_CONTENT);
