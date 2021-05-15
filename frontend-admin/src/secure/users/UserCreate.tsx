@@ -18,8 +18,7 @@ class UserCreate extends Component {
   componentDidMount = async () => {
     const response = await axios.get("roles")
     this.setState({
-      roles: response.data.data,
-      redirect: false
+      roles: response.data.data
     })
   }
   submit = async (e: SyntheticEvent) => {

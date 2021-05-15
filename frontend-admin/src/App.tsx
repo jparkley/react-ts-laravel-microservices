@@ -5,6 +5,7 @@ import Users from "./secure/users/Users"
 import Login from "./public/Login"
 import Register from "./public/Register"
 import UserCreate from "./secure/users/UserCreate"
+import UserEdit from "./secure/users/UserEdit"
 import "./App.css"
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
         <Route path={"/dashboard"} component={Dashboard} />
         <Route path={"/users"} exact component={Users} />
         <Route path={"/users/create"} component={UserCreate} />
+        <Route path={"/users/:id/edit"} component={UserEdit} />
         <Route path={"/login"} component={Login} />
         <Route path={"/register"} component={Register} />
       </BrowserRouter>
