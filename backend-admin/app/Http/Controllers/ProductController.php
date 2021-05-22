@@ -39,7 +39,7 @@ class ProductController extends Controller
         return response($product, Response::HTTP_ACCEPTED);
     }
 
-    public function delete($id) {
+    public function destroy($id) {
         Gate::authorize('edit', 'products');
         Product::destroy($id);
         return response(null, Response::HTTP_NO_CONTENT);

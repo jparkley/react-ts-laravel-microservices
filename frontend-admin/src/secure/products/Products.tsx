@@ -2,35 +2,42 @@ import React, { Component } from "react"
 import axios from "axios"
 import Wrapper from "../Wrapper"
 import { Link } from "react-router-dom"
-import { Role } from "../../classes/role"
+import { Product } from "../../classes/product"
 
-class Roles extends Component {
+class Products extends Component {
   state = {
-    roles: []
+    products: []
   }
   componentDidMount = async () => {
-    const response = await axios.get("roles")
+    const response = await axios.get("products")
     this.setState({
-      roles: response.data.data
+      products: response.data.data
     })
   }
+
   delete = async (id: number) => {
     if (window.confirm("Are you sure you want to delete this record?")) {
-      await axios.delete(`roles/${id}`)
+      try {
+        await axios.delete(`products/${id}`)
+      } catch (e) {
+        console.log(e)
+      }
+
       this.setState({
-        roles: this.state.roles.filter((r: Role) => r.id !== id)
+        products: this.state.products.filter((p: Product) => p.id !== id)
       })
     }
   }
+
   render() {
     return (
       <Wrapper>
-        <h2>Roles</h2>
+        <h2>Products</h2>
 
         <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
           <div className="btn-toolbar mb-2">
-            <Link to={"/roles/create"} className="btn btn-md btn-outline-secondary">
-              Add Role
+            <Link to={"/products/create"} className="btn btn-md btn-outline-secondary">
+              Add Product
             </Link>
           </div>
         </div>
@@ -39,22 +46,30 @@ class Roles extends Component {
             <thead>
               <tr>
                 <th>#</th>
-                <th>Name</th>
+                <th>Image</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Price</th>
                 <th>Action</th>
               </tr>
             </thead>
             <tbody>
-              {this.state.roles.map((role: Role) => {
+              {this.state.products.map((product: Product) => {
                 return (
-                  <tr key={role.id}>
-                    <td>{role.id}</td>
-                    <td>{role.name}</td>
+                  <tr key={product.id}>
+                    <td>{product.id}</td>
+                    <td>{product.title}</td>
+                    <td>
+                      <img src={product.image} width="50" />
+                    </td>
+                    <td>{product.description}</td>
+                    <td>{product.price}</td>
                     <td>
                       <div className="btn-group">
-                        <Link to={`/roles/${role.id}/edit`} className="btn btn-md btn-outline-secondary mr-2">
+                        <Link to={`/products/${product.id}/edit`} className="btn btn-md btn-outline-secondary mr-2">
                           Edit
                         </Link>
-                        <a href="#" className="btn btn-md btn-outline-danger" onClick={() => this.delete(role.id)}>
+                        <a href="#" className="btn btn-md btn-outline-danger" onClick={() => this.delete(product.id)}>
                           Delete
                         </a>
                       </div>
@@ -69,4 +84,4 @@ class Roles extends Component {
     )
   }
 }
-export default Roles
+export default Products
