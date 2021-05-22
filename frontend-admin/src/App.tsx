@@ -1,4 +1,4 @@
-import React from "react"
+import React, { Component } from "react"
 import { BrowserRouter, Route } from "react-router-dom"
 import Dashboard from "./secure/dashboard/Dashboard"
 import Users from "./secure/users/Users"
@@ -9,6 +9,7 @@ import UserEdit from "./secure/users/UserEdit"
 import Roles from "./secure/roles/Roles"
 import "./App.css"
 import RoleCreate from "./secure/roles/RoleCreate"
+import RoleEdit from "./secure/roles/RoleEdit"
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path={"/users/:id/edit"} component={UserEdit} />
         <Route path={"/roles"} exact component={Roles} />
         <Route path={"/roles/create"} component={RoleCreate} />
+        <Route path={"/roles/:id/edit"} component={RoleEdit} />
         <Route path={"/login"} component={Login} />
         <Route path={"/register"} component={Register} />
       </BrowserRouter>
