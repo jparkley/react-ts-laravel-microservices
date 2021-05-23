@@ -6,6 +6,7 @@ import Paginator from "../components/Paginator"
 
 import { Product } from "../../classes/product"
 import { isParenthesizedExpression } from "typescript"
+import Deleter from "../components/Deleter"
 
 class Products extends Component {
   state = {
@@ -27,18 +28,10 @@ class Products extends Component {
     await this.componentDidMount()
   }
 
-  delete = async (id: number) => {
-    if (window.confirm("Are you sure you want to delete this record?")) {
-      try {
-        await axios.delete(`products/${id}`)
-      } catch (e) {
-        console.log(e)
-      }
-
-      this.setState({
-        products: this.state.products.filter((p: Product) => p.id !== id)
-      })
-    }
+  handleDelete = (id: number) => {
+    this.setState({
+      products: this.state.products.filter((p: Product) => p.id !== id)
+    })
   }
 
   render() {
@@ -81,9 +74,7 @@ class Products extends Component {
                         <Link to={`/products/${product.id}/edit`} className="btn btn-md btn-outline-secondary mr-2">
                           Edit
                         </Link>
-                        <a href="#" className="btn btn-md btn-outline-danger" onClick={() => this.delete(product.id)}>
-                          Delete
-                        </a>
+                        <Deleter id={product.id} endpoint={"products"} handleDelete={this.handleDelete} />
                       </div>
                     </td>
                   </tr>

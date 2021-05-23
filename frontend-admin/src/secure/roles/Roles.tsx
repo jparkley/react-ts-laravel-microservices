@@ -3,25 +3,26 @@ import axios from "axios"
 import Wrapper from "../Wrapper"
 import { Link } from "react-router-dom"
 import { Role } from "../../classes/role"
+import Deleter from "../components/Deleter"
 
 class Roles extends Component {
   state = {
     roles: []
   }
+
   componentDidMount = async () => {
     const response = await axios.get("roles")
     this.setState({
       roles: response.data.data
     })
   }
-  delete = async (id: number) => {
-    if (window.confirm("Are you sure you want to delete this record?")) {
-      await axios.delete(`roles/${id}`)
-      this.setState({
-        roles: this.state.roles.filter((r: Role) => r.id !== id)
-      })
-    }
+
+  handleDelete = (id: number) => {
+    this.setState({
+      roles: this.state.roles.filter((r: Role) => r.id !== id)
+    })
   }
+
   render() {
     return (
       <Wrapper>
@@ -54,9 +55,7 @@ class Roles extends Component {
                         <Link to={`/roles/${role.id}/edit`} className="btn btn-md btn-outline-secondary mr-2">
                           Edit
                         </Link>
-                        <a href="#" className="btn btn-md btn-outline-danger" onClick={() => this.delete(role.id)}>
-                          Delete
-                        </a>
+                        <Deleter id={role.id} endpoint={"roles"} handleDelete={this.handleDelete} />
                       </div>
                     </td>
                   </tr>
