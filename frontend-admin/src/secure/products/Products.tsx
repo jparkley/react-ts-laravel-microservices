@@ -1,18 +1,30 @@
 import React, { Component } from "react"
 import axios from "axios"
-import Wrapper from "../Wrapper"
 import { Link } from "react-router-dom"
+import Wrapper from "../Wrapper"
+import Paginator from "../components/Paginator"
+
 import { Product } from "../../classes/product"
+import { isParenthesizedExpression } from "typescript"
 
 class Products extends Component {
   state = {
     products: []
   }
+  page = 1
+  last_page = 0
+
   componentDidMount = async () => {
-    const response = await axios.get("products")
+    const response = await axios.get(`products?page=${this.page}`)
     this.setState({
       products: response.data.data
     })
+    this.last_page = response.data.meta.last_page
+  }
+
+  handlePageChange = async (page: number) => {
+    this.page = page
+    await this.componentDidMount()
   }
 
   delete = async (id: number) => {
@@ -80,6 +92,7 @@ class Products extends Component {
             </tbody>
           </table>
         </div>
+        <Paginator lastPage={this.last_page} handlePageChange={this.handlePageChange} />
       </Wrapper>
     )
   }
