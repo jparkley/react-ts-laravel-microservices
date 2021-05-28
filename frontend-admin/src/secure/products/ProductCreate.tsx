@@ -10,7 +10,8 @@ class ProductCreate extends Component {
   price = 0
 
   state = {
-    redirect: false
+    redirect: false,
+    image: ""
   }
   submit = async (e: SyntheticEvent) => {
     e.preventDefault()
@@ -23,6 +24,19 @@ class ProductCreate extends Component {
 
     this.setState({
       redirect: true
+    })
+  }
+
+  upload = async (files: FileList | null) => {
+    if (files == null) return
+
+    // Create an ojbect of formData
+    const formData = new FormData()
+    formData.append("image", files[0])
+    const response = await axios.post("upload", formData)
+    this.image = response.data.url
+    this.setState({
+      image: this.image
     })
   }
 
@@ -44,9 +58,11 @@ class ProductCreate extends Component {
           <div className="form-group">
             <label>Image</label>
             <div className="input-group">
-              <input type="text" name="image" className="form-control" onChange={e => (this.image = e.target.value)} />
-              <div className="input-group-primary">
-                Upload <input type="file" hidden />
+              <input type="text" name="image" className="form-control" onChange={e => (this.image = e.target.value)} value={(this.image = this.state.image)} />
+              <div className="input-group-append">
+                <label htmlFor="" className="btn btn-primary">
+                  Upload <input type="file" onChange={e => this.upload(e.target.files)} />
+                </label>
               </div>
             </div>
           </div>

@@ -26,6 +26,7 @@
 /frontend-admin/coverage
 
 /frontend-admin/build
+/frontend-admin/public
 
 /frontend-admin/.DS_Store
 /frontend-admin/.env.local
