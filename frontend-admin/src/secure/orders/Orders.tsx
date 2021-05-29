@@ -53,8 +53,8 @@ class Orders extends Component {
                     <td>{order.total}</td>
                     <td>
                       <div className="btn-group">
-                        <Link to={`/orders/${order.id}/edit`} className="btn btn-md btn-outline-secondary mr-2">
-                          Edit
+                        <Link to={`/orders/${order.id}`} className="btn btn-md btn-outline-secondary mr-2">
+                          View
                         </Link>
                       </div>
                     </td>
