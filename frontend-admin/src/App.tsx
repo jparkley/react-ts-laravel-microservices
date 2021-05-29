@@ -13,6 +13,7 @@ import RoleEdit from "./secure/roles/RoleEdit"
 import Products from "./secure/products/Products"
 import ProductCreate from "./secure/products/ProductCreate"
 import ProductEdit from "./secure/products/ProductEdit"
+import Orders from "./secure/orders/Orders"
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
         <Route path={"/products"} exact component={Products} />
         <Route path={"/products/create"} component={ProductCreate} />
         <Route path={"/products/:id/Edit"} component={ProductEdit} />
+        <Route path={"/orders"} exact component={Orders} />
         <Route path={"/login"} component={Login} />
         <Route path={"/register"} component={Register} />
       </BrowserRouter>
