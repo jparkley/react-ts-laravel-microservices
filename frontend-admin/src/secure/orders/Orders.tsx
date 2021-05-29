@@ -43,7 +43,7 @@ class Orders extends Component {
         <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
           <div className="btn-toolbar mb-2">
             <a onClick={this.handleExport} className="btn btn-md btn-outline-secondary">
-              Add Product
+              Export Orders
             </a>
           </div>
         </div>
