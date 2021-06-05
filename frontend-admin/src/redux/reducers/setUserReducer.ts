@@ -11,3 +11,4 @@ const setUserReducer = (state: { user: User } = { user: new User() }, action: { 
       return state
   }
 }
+export default setUserReducer
