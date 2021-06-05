@@ -72,7 +72,6 @@ class UserController extends Controller
 
     public function updatePassword(UpdatePasswordRequest $request) {
         $user = Auth::user();
-        dd($request);
         $user->update([
             'password' => Hash::make($request->input('password'))
         ]);
