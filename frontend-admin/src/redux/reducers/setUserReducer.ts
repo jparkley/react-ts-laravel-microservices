@@ -1,6 +1,6 @@
 import { User } from "../../classes/user"
 
-const setUserReducer = (state: { user: User } = { user: new User() }, action: { type: string; user: User }) => {
+const setUserReducer = (state = { user: new User() }, action: { user: User; type: string }) => {
   switch (action.type) {
     case "SET_USER":
       return {
