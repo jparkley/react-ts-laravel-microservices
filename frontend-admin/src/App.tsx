@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import { BrowserRouter, Route } from "react-router-dom"
 import Dashboard from "./secure/dashboard/Dashboard"
 import Users from "./secure/users/Users"
+import Profile from "./secure/profile/Profile"
 import Login from "./public/Login"
 import Register from "./public/Register"
 import UserCreate from "./secure/users/UserCreate"
@@ -22,6 +23,7 @@ function App() {
       <BrowserRouter>
         <Route path={"/"} exact component={Dashboard} />
         <Route path={"/dashboard"} component={Dashboard} />
+        <Route path={"/profile"} exact component={Profile} />
         <Route path={"/users"} exact component={Users} />
         <Route path={"/users/create"} component={UserCreate} />
         <Route path={"/users/:id/edit"} component={UserEdit} />
